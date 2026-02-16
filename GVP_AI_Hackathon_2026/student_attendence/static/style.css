@@ -1,0 +1,523 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #f5f7fa;
+    color: #1a2332;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #2563b8 0%, #1e4a8a 100%);
+    color: white;
+    padding: 24px 32px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 20px rgba(37, 99, 184, 0.3);
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+
+/* Navigation */
+.nav {
+    background: white;
+    padding: 12px 24px;
+    border-bottom: 1px solid #e5e9ef;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: auto;
+}
+
+.nav-brand .icon {
+    width: 40px;
+    height: 40px;
+    background: #2563b8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.nav-brand span {
+    font-weight: 700;
+    font-size: 18px;
+    color: #1a2332;
+}
+
+.nav a {
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav a:hover {
+    background: rgba(37, 99, 184, 0.08);
+    color: #2563b8;
+}
+
+.nav a.active {
+    background: #2563b8;
+    color: white;
+}
+
+/* Card */
+.card {
+    background: white;
+    padding: 24px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    border: 1px solid #e5e9ef;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.card-header .icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(37, 99, 184, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563b8;
+    font-size: 20px;
+}
+
+.card-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a2332;
+}
+
+.card-header .badge {
+    margin-left: auto;
+    padding: 6px 12px;
+    background: #f1f5f9;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Form Elements */
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a2332;
+    margin-bottom: 6px;
+}
+
+input, select {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e5e9ef;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+    color: #1a2332;
+    transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #2563b8;
+    box-shadow: 0 0 0 3px rgba(37, 99, 184, 0.15);
+}
+
+input::placeholder {
+    color: #94a3b8;
+}
+
+button {
+    padding: 12px 20px;
+    background: #2563b8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(37, 99, 184, 0.25);
+}
+
+button:hover {
+    background: #1e4a8a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 184, 0.35);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button.btn-full {
+    width: 100%;
+    margin-top: 8px;
+}
+
+button.btn-success {
+    background: #16a34a;
+    box-shadow: 0 2px 8px rgba(22, 163, 74, 0.25);
+}
+
+button.btn-success:hover {
+    background: #15803d;
+}
+
+button.btn-danger {
+    background: #dc2626;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+}
+
+button.btn-danger:hover {
+    background: #b91c1c;
+}
+
+button.btn-small {
+    padding: 8px 14px;
+    font-size: 13px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead tr {
+    background: #f8fafc;
+}
+
+th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e9ef;
+}
+
+th:first-child {
+    border-radius: 8px 0 0 0;
+}
+
+th:last-child {
+    border-radius: 0 8px 0 0;
+}
+
+td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #1a2332;
+    font-size: 14px;
+}
+
+tbody tr {
+    transition: background 0.15s ease;
+}
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status Badges */
+.badge-semester {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(37, 99, 184, 0.1);
+    color: #2563b8;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.badge-present {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(22, 163, 74, 0.1);
+    color: #16a34a;
+    border: 1px solid rgba(22, 163, 74, 0.2);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.badge-absent {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(220, 38, 38, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.badge-marks {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.badge-marks.high {
+    background: rgba(22, 163, 74, 0.1);
+    color: #16a34a;
+}
+
+.badge-marks.medium {
+    background: rgba(234, 179, 8, 0.1);
+    color: #ca8a04;
+}
+
+.badge-marks.low {
+    background: rgba(220, 38, 38, 0.1);
+    color: #dc2626;
+}
+
+/* Warning Card */
+.warning-card {
+    padding: 16px;
+    background: rgba(234, 179, 8, 0.05);
+    border: 1px solid rgba(234, 179, 8, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.warning-card .student-info h4 {
+    font-weight: 600;
+    color: #1a2332;
+    margin-bottom: 2px;
+}
+
+.warning-card .student-info span {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.badge-warning {
+    padding: 6px 14px;
+    background: rgba(234, 179, 8, 0.15);
+    color: #ca8a04;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Stats Cards */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e5e9ef;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-card .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.stat-card .icon.blue {
+    background: rgba(37, 99, 184, 0.1);
+    color: #2563b8;
+}
+
+.stat-card .icon.teal {
+    background: rgba(20, 184, 166, 0.1);
+    color: #14b8a6;
+}
+
+.stat-card .icon.green {
+    background: rgba(22, 163, 74, 0.1);
+    color: #16a34a;
+}
+
+.stat-card .stat-info p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+
+.stat-card .stat-info h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a2332;
+}
+
+/* Action Buttons Group */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #2563b8;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 16px;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #1e4a8a;
+}
+
+/* Date Input Container */
+.date-input-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.date-input-container label {
+    margin-bottom: 0;
+    color: #64748b;
+}
+
+.date-input-container input {
+    width: auto;
+    margin-bottom: 0;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #64748b;
+}
+
+/* Success Message */
+.success-state {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.success-state .icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(22, 163, 74, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: #16a34a;
+    font-size: 32px;
+}
+
+.success-state p {
+    color: #64748b;
+}
+
+/* Center align for certain columns */
+.text-center {
+    text-align: center;
+}

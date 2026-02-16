@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks - Smart Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-brand">
+        <div class="icon">SA</div>
+        <span>Smart Attendance</span>
+    </div>
+    <a href="/">Home</a>
+    <a href="/attendance">Attendance</a>
+    <a href="/marks" class="active">Marks</a>
+   
+</nav>
+
+<div class="container">
+    <div class="header">
+        <h1>Marks Management</h1>
+        <p>Enter and manage student examination marks</p>
+    </div>
+
+    <div class="grid">
+
+        <!-- LEFT: ENTER MARKS -->
+        <div class="card">
+            <div class="card-header">
+                <div class="icon">📝</div>
+                <h2>Enter Marks</h2>
+            </div>
+
+            <form method="post" action="/enter_marks">
+                <label>Roll No</label>
+                <input type="number" name="roll" placeholder="Enter roll number" required>
+                
+                <label>Subject</label>
+                <input type="text" name="subject" placeholder="Enter subject name" required>
+                
+                <label>Marks</label>
+                <input type="number" name="marks" placeholder="Enter marks (0-100)" min="0" max="100" required>
+                
+                <button type="submit" class="btn-full">Save Marks</button>
+            </form>
+            
+            <a href="/" class="back-link">← Back to Home</a>
+        </div>
+
+        <!-- RIGHT: RECENT MARKS -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Recent Marks Entries</h2>
+                <span class="badge">{{ marks|length }} entries</span>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Subject</th>
+                        <th class="text-center">Marks</th>
+                        <th class="text-center">AI Remark</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for m in marks %}
+                    <tr>
+                        <td><strong>{{ m[0] }}</strong></td>
+                        <td>{{ m[1] }}</td>
+
+                        <!-- MARKS BADGE -->
+                        <td class="text-center">
+                            {% if m[2] >= 60 %}
+                                <span class="badge-marks high">{{ m[2] }}</span>
+                            {% elif m[2] >= 40 %}
+                                <span class="badge-marks medium">{{ m[2] }}</span>
+                            {% else %}
+                                <span class="badge-marks low">{{ m[2] }}</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- AI REMARK -->
+                        <td class="text-center">
+                            {% if m[3] == "Good" %}
+                                <span class="badge-marks high">{{ m[3] }}</span>
+                            {% elif m[3] == "Average" %}
+                                <span class="badge-marks medium">{{ m[3] }}</span>
+                            {% else %}
+                                <span class="badge-marks low">{{ m[3] }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    {% if not marks %}
+                    <tr>
+                        <td colspan="4" class="empty-state">
+                            No marks entries yet
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

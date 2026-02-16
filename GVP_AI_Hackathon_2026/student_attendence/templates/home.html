@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Smart Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-brand">
+        <div class="icon">SA</div>
+        <span>Smart Attendance</span>
+    </div>
+    <a href="/" class="active">Home</a>
+    <a href="/attendance">Attendance</a>
+    <a href="/marks">Marks</a>
+    
+</nav>
+
+<div class="container">
+    <div class="header">
+        <h1>Smart Attendance & Performance Tracker</h1>
+        <p>Manage students, track attendance, and monitor academic performance</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon">+</div>
+                <h2>Register Student</h2>
+            </div>
+            <form method="post" action="/add_student">
+                <label>Roll No</label>
+                <input type="number" name="roll" placeholder="Enter roll number" required>
+                
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Enter student name" required>
+                
+                <label>Semester</label>
+                <input type="number" name="semester" placeholder="Enter semester" min="1" max="8" required>
+                
+                <button type="submit" class="btn-full">Add Student</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="icon">👥</div>
+                <h2>Registered Students</h2>
+                <span class="badge">{{ students|length }} students</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th class="text-center">Semester</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in students %}
+                    <tr>
+                        <td><strong>{{ s[0] }}</strong></td>
+                        <td>{{ s[1] }}</td>
+                        <td class="text-center"><span class="badge-semester">Sem {{ s[2] }}</span></td>
+                    </tr>
+                    {% endfor %}
+                    {% if not students %}
+                    <tr>
+                        <td colspan="3" class="empty-state">No students registered yet</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - Smart Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-brand">
+        <div class="icon">SA</div>
+        <span>Smart Attendance</span>
+    </div>
+    <a href="/">Home</a>
+    <a href="/attendance" class="active">Attendance</a>
+    <a href="/marks">Marks</a>
+ 
+</nav>
+
+<div class="container">
+    <div class="header">
+        <h1>Attendance Management</h1>
+        <p>Mark and track daily student attendance</p>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="icon">📅</div>
+            <h2>Mark Attendance</h2>
+
+            <div class="date-input-container">
+                <label>Date:</label>
+                <input type="date" id="attendanceDate" value="{{ today }}">
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>Name</th>
+                    <th class="text-center">Semester</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Actions</th>
+                    <th class="text-center">AI Warning</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for s in students %}
+                <tr>
+                    <td><strong>{{ s[0] }}</strong></td>
+                    <td>{{ s[1] }}</td>
+                    <td class="text-center">
+                        <span class="badge-semester">Sem {{ s[2] }}</span>
+                    </td>
+
+                    <!-- STATUS DISPLAY -->
+                    <td class="text-center">
+                        {% if s[3] == 'Present' %}
+                            <span class="badge-present">Present</span>
+                        {% elif s[3] == 'Absent' %}
+                            <span class="badge-absent">Absent</span>
+                        {% else %}
+                            <span style="color:#94a3b8;font-size:13px;">Not marked</span>
+                        {% endif %}
+                    </td>
+
+                    <!-- ACTION BUTTONS -->
+                    <td class="text-center">
+                        <div class="action-buttons">
+
+                            <!-- PRESENT -->
+                            <form method="post" action="/mark_attendance" style="display:inline;">
+                                <input type="hidden" name="roll" value="{{ s[0] }}">
+                                <input type="hidden" name="status" value="Present">
+                                <input type="hidden" name="date" class="date-hidden">
+                                <button type="submit" class="btn-success btn-small">
+                                    ✓ Present
+                                </button>
+                            </form>
+
+                            <!-- ABSENT -->
+                            <form method="post" action="/mark_attendance" style="display:inline;">
+                                <input type="hidden" name="roll" value="{{ s[0] }}">
+                                <input type="hidden" name="status" value="Absent">
+                                <input type="hidden" name="date" class="date-hidden">
+                                <button type="submit" class="btn-danger btn-small">
+                                    ✕ Absent
+                                </button>
+                            </form>
+
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        {% if s[5] == "Attendance Shortage" %}
+                            <span class="badge-absent">{{ s[5] }}</span>
+                        {% else %}
+                            <span class="badge-present">{{ s[5] }}</span>
+                        {% endif %}
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+                {% if not students %}
+                <tr>
+                    <td colspan="5" class="empty-state">
+                        No students registered yet
+                    </td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- DATE SYNC SCRIPT -->
+<script>
+function updateDates() {
+    const selectedDate = document.getElementById('attendanceDate').value;
+    document.querySelectorAll('.date-hidden').forEach(el => {
+        el.value = selectedDate;
+    });
+}
+
+document.getElementById('attendanceDate').addEventListener('change', updateDates);
+window.onload = updateDates;
+</script>
+
+</body>
+</html>
